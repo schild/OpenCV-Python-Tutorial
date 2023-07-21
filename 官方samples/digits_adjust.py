@@ -67,8 +67,7 @@ class App(object):
 
     def run_jobs(self, f, jobs):
         pool = ThreadPool(processes=cv2.getNumberOfCPUs())
-        ires = pool.imap_unordered(f, jobs)
-        return ires
+        return pool.imap_unordered(f, jobs)
 
     def adjust_SVM(self):
         Cs = np.logspace(0, 10, 15, base=2)
@@ -127,7 +126,7 @@ if __name__ == '__main__':
     args.setdefault('--model', 'svm')
     args.setdefault('--env', '')
     if args['--model'] not in ['svm', 'knearest']:
-        print('unknown model "%s"' % args['--model'])
+        print(f"""unknown model "{args['--model']}\"""")
         sys.exit(1)
 
     t = clock()

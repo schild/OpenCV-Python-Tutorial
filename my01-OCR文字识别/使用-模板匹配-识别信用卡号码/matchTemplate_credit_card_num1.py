@@ -22,6 +22,7 @@ Credit Card #: 4000123456789010
 
 """
 
+
 # import the necessary packages
 from imutils import contours
 import numpy as np
@@ -148,7 +149,7 @@ cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 locs = []
 
 # loop over the contours
-for (i, c) in enumerate(cnts):
+for c in cnts:
     # compute the bounding box of the contour, then use the
     # bounding box coordinates to derive the aspect ratio
     (x, y, w, h) = cv2.boundingRect(c)
@@ -204,7 +205,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
         scores = []
 
         # loop over the reference digit name and digit ROI
-        for (digit, digitROI) in digits.items():
+        for digitROI in digits.values():
             # apply correlation-based template matching, take the
             # score, and update the scores list
             result = cv2.matchTemplate(roi, digitROI,
@@ -224,7 +225,7 @@ for (i, (gX, gY, gW, gH)) in enumerate(locs):
     output.extend(groupOutput)
 
 # display the output credit card information to the screen
-print("Credit Card Type: {}".format(FIRST_NUMBER.get(output[0], 'None')))
-print("Credit Card #: {}".format("".join(output)))
+print(f"Credit Card Type: {FIRST_NUMBER.get(output[0], 'None')}")
+print(f'Credit Card #: {"".join(output)}')
 cv2.imshow("Image", image)  # TODO 效果不是很好，需要改进
 cv2.waitKey(0)

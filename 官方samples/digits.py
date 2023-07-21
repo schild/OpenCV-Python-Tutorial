@@ -54,7 +54,7 @@ def split2d(img, cell_size, flatten=True):
     return cells
 
 def load_digits(fn):
-    print('loading "%s" ...' % fn)
+    print(f'loading "{fn}" ...')
     digits_img = cv2.imread(fn, 0)
     digits = split2d(digits_img, (SZ, SZ))
     labels = np.repeat(np.arange(CLASS_N), len(digits)/CLASS_N)
