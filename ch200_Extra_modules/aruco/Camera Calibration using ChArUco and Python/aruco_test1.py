@@ -8,6 +8,7 @@
 aruco11.py:
 """
 
+
 import time, cv2
 # import cv2.aruco as A
 import numpy as np
@@ -28,8 +29,7 @@ cap = cv2.VideoCapture(0)
 allCorners = []
 allIds = []
 decimator = 0
-for i in range(200):
-
+for _ in range(200):
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     res = cv2.aruco.detectMarkers(gray, dictionary)

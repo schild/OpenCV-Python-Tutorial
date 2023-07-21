@@ -25,15 +25,10 @@ def main():
 
     classifier_fn = 'digits_svm.dat'
     if not os.path.exists(classifier_fn):
-        print('"%s" not found, run digits.py first' % classifier_fn)
+        print(f'"{classifier_fn}" not found, run digits.py first')
         return
 
-    if True:
-        model = cv2.ml.SVM_load(classifier_fn)
-    else:
-        model = cv2.ml.SVM_create()
-        model.load_(classifier_fn) #Known bug: https://github.com/opencv/opencv/issues/4969
-
+    model = cv2.ml.SVM_load(classifier_fn)
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)

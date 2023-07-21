@@ -93,11 +93,7 @@ def affine_detect(detector, img, mask=None, pool=None):
         return keypoints, descrs
 
     keypoints, descrs = [], []
-    if pool is None:
-        ires = it.imap(f, params)
-    else:
-        ires = pool.imap(f, params)
-
+    ires = it.imap(f, params) if pool is None else pool.imap(f, params)
     for i, (k, d) in enumerate(ires):
         print('affine sampling: %d / %d\r' % (i+1, len(params)), end='')
         keypoints.extend(k)

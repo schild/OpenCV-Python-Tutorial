@@ -15,11 +15,8 @@ def sharpen(my_image):
                 sum = 5 * my_image[j, i, k] - my_image[j + 1, i, k] - my_image[j - 1, i, k]\
                      - my_image[j, i + 1, k] - my_image[j, i - 1, k];
 
-                if sum > 255:
-                    sum = 255
-                if sum < 0:
-                    sum = 0
-
+                sum = min(sum, 255)
+                sum = max(sum, 0)
                 result[j, i, k] = sum
     ## [basic_method_loop]
 
